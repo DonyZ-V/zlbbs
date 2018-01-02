@@ -1,4 +1,10 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+DB_HOST = '127.0.0.1'
+DB_PORT = '3306'
+DB_USER = 'root'
+DB_PASSWORD = 'root'
+DB_DATABASE = 'zlbbs'
 
-__mtime__ = '2018/1/2'
+DB_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8'.format(DB_USER,DB_PASSWORD,DB_HOST,DB_PORT,DB_DATABASE)
+
+SQLALCHEMY_DATABASE_URI = DB_URI
+SQLALCHEMY_TRACK_MODIFICATIONS = False

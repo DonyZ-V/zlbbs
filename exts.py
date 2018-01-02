@@ -1,4 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+from flask_sqlalchemy import SQLAlchemy
 
-__mtime__ = '2018/1/2'
+db = SQLAlchemy()
