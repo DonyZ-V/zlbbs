@@ -16,7 +16,7 @@ $(function () {
         //1. 要在模板的meta标签中渲染一个crsf-token
         //2. 在ajax请求的头部中设置X-CRSFtoken
         zlajax.post({
-            'url': 'cms/resetpwd/',
+            'url': '/cms/resetpwd/',
             'data': {
                 'oldpwd': oldpwd,
                 'newpwd': newpwd,

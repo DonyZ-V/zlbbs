@@ -1,5 +1,5 @@
-from flask import Blueprint, views, render_template, request, session, redirect, url_for
-
+from flask import Blueprint, views, render_template, request, session, redirect, url_for,g,jsonify
+from exts import db
 from .forms import LoginForm,ResetpwdForm
 from .models import CMSUser
 from .decorators import login_required
@@ -60,10 +60,19 @@ class ResetPwdView(views.MethodView):
     def post(self):
         form = ResetpwdForm(request.form)
         if form.validate():
-            pass
+            oldpwd = form.oldpwd.data
+            newpwd = form.newpwd.data
+            user = g.cms_user
+            if user.check_password(oldpwd):
+                user.password = newpwd
+                db.session.commit()
+                return jsonify({'code':200,'message':''})
+            else:
+                return jsonify({'code':400,'message':''})
         else:
-            pass
+            message = form.get_error()
+            return  jsonify({'code': 400,'message':message})
 
 
 bp.add_url_rule('/login/', view_func=LoginView.as_view('login'))
-bp.add_url_rule('resetpwd',view_func=ResetPwdView.as_view('resetpwd'))
+bp.add_url_rule('/resetpwd/',view_func=ResetPwdView.as_view('resetpwd'))
