@@ -1,6 +1,6 @@
 from flask import Blueprint, views, render_template, request, session, redirect, url_for
 
-from .forms import LoginForm
+from .forms import LoginForm,ResetpwdForm
 from .models import CMSUser
 from .decorators import login_required
 import config
@@ -58,7 +58,11 @@ class ResetPwdView(views.MethodView):
         return render_template('cms/cms_resetpwd.html')
 
     def post(self):
-        pass
+        form = ResetpwdForm(request.form)
+        if form.validate():
+            pass
+        else:
+            pass
 
 
 bp.add_url_rule('/login/', view_func=LoginView.as_view('login'))
