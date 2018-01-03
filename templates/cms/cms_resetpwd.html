@@ -1,0 +1,45 @@
+{% extends 'cms/cms_base.html' %}
+
+{% block title -%}
+    修改密码
+{%- endblock %}
+
+{% block head %}
+    <style>
+        .form-container{
+            width: 300px;
+        }
+    </style>
+{% endblock %}
+
+{% block page_title %}
+    {{ self.title() }}
+{% endblock %}
+
+{% block main_content %}
+    <form>
+        <div class="form-container">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">原密码</div>
+                    <input type="text" class="form-control" id="exampleInputAmount" name="oldpwd" placeholder="请输入原始密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">原密码</div>
+                    <input type="text" class="form-control" id="exampleInputAmount" name="newpwd" placeholder="请输入原始密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">确认新密码</div>
+                    <input type="text" class="form-control" id="exampleInputAmount" name="newpwd2" placeholder="请确认新密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">立即保存</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
