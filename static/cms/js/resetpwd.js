@@ -4,7 +4,7 @@
 
 $(function () {
     $('#submit').click(function (event) {
-        event.preventDefault()
+        event.preventDefault();
         var oldpwdE = $('input[name=oldpwd]');
         var newpwdE = $('input[name=newpwd]');
         var newpwd2E = $('input[name=newpwd2]');
