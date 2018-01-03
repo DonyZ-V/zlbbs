@@ -1,16 +1,18 @@
-from flask import Blueprint,views,render_template,request,session,redirect,url_for
+from flask import Blueprint, views, render_template, request, session, redirect, url_for
 
 from .forms import LoginForm
 from .models import CMSUser
 from .decorators import login_required
 import config
 
-bp = Blueprint('cms',__name__,url_prefix='/cms')
+bp = Blueprint('cms', __name__, url_prefix='/cms')
+
 
 @bp.route('/')
 @login_required
 def index():
     return render_template('cms/cms_index.html')
+
 
 @bp.route('/logout')
 @login_required
@@ -18,10 +20,16 @@ def logout():
     del session[config.CMS_USER_ID]
     return redirect(url_for('cms.login'))
 
-class LoginView(views.MethodView):
 
-    def get(self,message=None):
-        return render_template('cms/cms_login.html',message=message)
+@bp.route('/profile/')
+@login_required
+def profile():
+    return render_template('cms/cms_profile.html')
+
+
+class LoginView(views.MethodView):
+    def get(self, message=None):
+        return render_template('cms/cms_login.html', message=message)
 
     def post(self):
         form = LoginForm(request.form)
@@ -44,4 +52,4 @@ class LoginView(views.MethodView):
             return self.get(message=message)
 
 
-bp.add_url_rule('/login/',view_func=LoginView.as_view('login'))
+bp.add_url_rule('/login/', view_func=LoginView.as_view('login'))
