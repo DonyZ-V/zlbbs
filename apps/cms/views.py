@@ -1,10 +1,14 @@
 from flask import Blueprint, views, render_template, request, session, redirect, url_for, g, jsonify
-from exts import db
-from .forms import LoginForm, ResetpwdForm
+from exts import db,mail
+from .forms import LoginForm, ResetpwdForm,ResetEmailForm
 from .models import CMSUser
 from .decorators import login_required
 import config
-from utils import restful
+from utils import restful,zlcache
+import string
+import random
+from flask_mail import Message
+
 
 bp = Blueprint('cms', __name__, url_prefix='/cms')
 
@@ -26,6 +30,27 @@ def logout():
 @login_required
 def profile():
     return render_template('cms/cms_profile.html')
+
+@bp.route('/email_captcha/')
+@login_required
+def email_captcha():
+    email = request.args.get('email')
+    if not email:
+        return restful.params_error('请传递正确的邮箱!')
+
+    source = list(string.ascii_letters)
+    source.extend(map(lambda x:str(x),range(0,9)))
+    # source.extend(['0','1','2','3','4','5','6','7','8','9'])
+    captcha = ''.join(random.sample(source,6))
+
+    message = Message('Python论坛邮箱验证码',recipients=[email],body='您的验证码是: %s' % captcha)
+    try:
+        mail.send(message)
+    except:
+        return restful.server_error()
+    zlcache.set(email,captcha)
+    return restful.success()
+
 
 
 class LoginView(views.MethodView):
@@ -86,7 +111,14 @@ class ResetEmailView(views.MethodView):
         return render_template('cms/cms_resetemail.html')
 
     def post(self):
-        pass
+        form = ResetEmailForm(request.form)
+        if form.validate():
+            email = form.email.data
+            g.cms_user.email = email
+            db.session.commit()
+            return restful.success()
+        else:
+            return restful.params_error(form.get_error())
 
 
 bp.add_url_rule('/login/', view_func=LoginView.as_view('login'))
