@@ -1,6 +1,6 @@
-from flask import Blueprint, views, render_template, request, session, redirect, url_for,g,jsonify
+from flask import Blueprint, views, render_template, request, session, redirect, url_for, g, jsonify
 from exts import db
-from .forms import LoginForm,ResetpwdForm
+from .forms import LoginForm, ResetpwdForm
 from .models import CMSUser
 from .decorators import login_required
 import config
@@ -55,6 +55,7 @@ class LoginView(views.MethodView):
 
 class ResetPwdView(views.MethodView):
     decorators = [login_required]
+
     def get(self):
         return render_template('cms/cms_resetpwd.html')
 
@@ -78,5 +79,16 @@ class ResetPwdView(views.MethodView):
             return restful.params_error(message)
 
 
+class ResetEmailView(views.MethodView):
+    decorators = [login_required]
+
+    def get(self):
+        return render_template('cms/cms_resetemail.html')
+
+    def post(self):
+        pass
+
+
 bp.add_url_rule('/login/', view_func=LoginView.as_view('login'))
-bp.add_url_rule('/resetpwd/',view_func=ResetPwdView.as_view('resetpwd'))
+bp.add_url_rule('/resetpwd/', view_func=ResetPwdView.as_view('resetpwd'))
+bp.add_url_rule('/resetemail/',view_func=ResetEmailView.as_view('resetemail'))

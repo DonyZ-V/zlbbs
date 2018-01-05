@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abd12387-2391-4027-8409-7fd5faf80a5b" name="默认的" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cms/js/resetpwd.js" afterPath="$PROJECT_DIR$/static/cms/js/resetpwd.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/cms/views.py" afterPath="$PROJECT_DIR$/apps/cms/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cms/css/base.css" afterPath="$PROJECT_DIR$/static/cms/css/base.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/cms/cms_base.html" afterPath="$PROJECT_DIR$/templates/cms/cms_base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/cms/cms_resetpwd.html" afterPath="$PROJECT_DIR$/templates/cms/cms_resetpwd.html" />
     </list>
@@ -32,11 +32,12 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/cms/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-248">
-              <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+            <state relative-caret-position="759">
+              <caret line="93" column="75" selection-start-line="93" selection-start-column="75" selection-end-line="93" selection-end-column="75" />
               <folding>
-                <element signature="e#0#98#0" expanded="true" />
-                <element signature="e#694#1566#0" expanded="false" />
+                <element signature="e#0#100#0" expanded="true" />
+                <element signature="e#697#1569#0" expanded="false" />
+                <element signature="e#1614#2432#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -65,14 +66,14 @@
       <file leaf-file-name="cms_resetpwd.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/cms/cms_resetpwd.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="635">
-              <caret line="31" column="52" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
+            <state relative-caret-position="217">
+              <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="resetpwd.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="resetpwd.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/cms/js/resetpwd.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="728">
@@ -84,31 +85,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="cms_resetemail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/cms/cms_resetemail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="zlalert.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/common/sweetalert/zlalert.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="496">
               <caret line="124" column="6" selection-start-line="124" selection-start-column="6" selection-end-line="124" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="zlajax.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/common/js/zlajax.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_macros.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/common/_macros.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -129,8 +120,18 @@
       <file leaf-file-name="cms_base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/cms/cms_base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+            <state relative-caret-position="558">
+              <caret line="50" column="80" selection-start-line="50" selection-start-column="80" selection-end-line="50" selection-end-column="80" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/cms/css/base.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="933">
+              <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -143,9 +144,9 @@
       <list>
         <option value="Flask Main" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -169,7 +170,6 @@
         <option value="$PROJECT_DIR$/static/cms/css/signin.css" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/apps/cms/decorators.py" />
-        <option value="$PROJECT_DIR$/static/cms/css/base.css" />
         <option value="$PROJECT_DIR$/static/cms/js/base.js" />
         <option value="$PROJECT_DIR$/templates/common/_macros.html" />
         <option value="$PROJECT_DIR$/apps/cms/hooks.py" />
@@ -182,10 +182,12 @@
         <option value="$PROJECT_DIR$/apps/forms.py" />
         <option value="$PROJECT_DIR$/apps/cms/forms.py" />
         <option value="$PROJECT_DIR$/utils/restful.py" />
+        <option value="$PROJECT_DIR$/static/cms/js/resetpwd.js" />
+        <option value="$PROJECT_DIR$/templates/cms/cms_resetemail.html" />
         <option value="$PROJECT_DIR$/apps/cms/views.py" />
         <option value="$PROJECT_DIR$/templates/cms/cms_base.html" />
         <option value="$PROJECT_DIR$/templates/cms/cms_resetpwd.html" />
-        <option value="$PROJECT_DIR$/static/cms/js/resetpwd.js" />
+        <option value="$PROJECT_DIR$/static/cms/css/base.css" />
       </list>
     </option>
   </component>
@@ -373,6 +375,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="cms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -717,17 +723,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/cms/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#98#0" expanded="true" />
-            <element signature="e#694#1566#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/restful.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="775">
@@ -811,8 +806,9 @@
         <state relative-caret-position="1147">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
-            <element signature="e#0#98#0" expanded="true" />
-            <element signature="e#694#1566#0" expanded="false" />
+            <element signature="e#0#100#0" expanded="true" />
+            <element signature="e#697#1569#0" expanded="false" />
+            <element signature="e#1614#2432#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -963,13 +959,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/cms/css/base.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1340">
-          <caret line="177" column="24" selection-start-line="177" selection-start-column="24" selection-end-line="177" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/cms/js/base.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-229">
@@ -1023,6 +1012,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="42" selection-start-line="0" selection-start-column="42" selection-end-line="0" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1052,17 +1042,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/cms/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-248">
-          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#98#0" expanded="true" />
-            <element signature="e#694#1566#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
@@ -1087,14 +1066,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/cms/cms_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zlbbs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="620">
@@ -1105,14 +1076,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/cms/cms_resetpwd.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="635">
-          <caret line="31" column="52" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/cms/js/resetpwd.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="728">
@@ -1120,6 +1083,50 @@
           <folding>
             <element signature="e#0#48#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/cms/cms_resetemail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/cms/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="93" column="75" selection-start-line="93" selection-start-column="75" selection-end-line="93" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#100#0" expanded="true" />
+            <element signature="e#697#1569#0" expanded="false" />
+            <element signature="e#1614#2432#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/cms/cms_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="50" column="80" selection-start-line="50" selection-start-column="80" selection-end-line="50" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/cms/cms_resetpwd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/cms/css/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="933">
+          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
