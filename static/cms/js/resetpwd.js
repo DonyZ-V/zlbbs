@@ -23,10 +23,19 @@ $(function () {
                 'newpwd2': newpwd2
             },
             'success': function (data) {
-                console.log(data)
+                if (data['code'] == 200) {
+                    zlalert.alertSuccessToast('恭喜！密码修改成功！');
+                    oldpwdE.val('');
+                    newpwdE.val('');
+                    newpwd2E.val('');
+                } else {
+                    var message = data['message'];
+                    zlalert.alertInfo(message)
+                }
+
             },
             'fail': function (error) {
-                console.log(error)
+                zlalert.alertNetworkError()
             }
         })
     })

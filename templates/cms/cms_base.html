@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="{{ static('cms/css/base.css') }}">
     <script src="{{ static('cms/js/base.js') }}"></script>
     <script src="{{ static('common/js/zlajax.js') }}"></script>
+    <link rel="stylesheet" href="{{ static("common/sweetalert/sweetalert.css") }}">
+    <script src="{{ static('common/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ static('common/sweetalert/zlalert.js') }}"></script>
     {% block head %}{% endblock %}
 </head>
 <body>
@@ -41,7 +44,7 @@
       <div class="row">
           <div class="col-sm-3 col-md-2 sidebar">
               <ul class="nav-sidebar">
-                <li class="unfold"><a href="#">首页</a></li>
+                <li class="unfold"><a href="{{ url_for('cms.index') }}">首页</a></li>
                 <li class="profile-li">
                     <a href="#">个人中心<span></span></a>
                     <ul class="subnav">
