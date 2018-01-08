@@ -3,7 +3,7 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-class CMSPersmission(object):
+class CMSPermission(object):
     # 255 的二进制方式来表示 1111 1111
     ALL_PERMISSION = 0b11111111
     # 1. 访问者权限
@@ -35,7 +35,7 @@ class CMSRole(db.Model):
     name = db.Column(db.String(50), nullable=False)
     desc = db.Column(db.String(50), nullable=False)
     create_time = db.Column(db.DateTime, default=datetime.now())
-    permissions = db.Column(db.Integer, default=CMSPersmission.VISITOR)
+    permissions = db.Column(db.Integer, default=CMSPermission.VISITOR)
 
     users = db.relationship('CMSUser', secondary=cms_role_user, backref='roles')
 
@@ -83,7 +83,7 @@ class CMSUser(db.Model):
 
     @property
     def is_developer(self):
-        return self.has_permission(CMSPersmission.ALL_PERMISSION)
+        return self.has_permission(CMSPermission.ALL_PERMISSION)
 
 # 密码：对外的字段名叫做password
 # 密码：对内的字段名叫做_password
