@@ -1,6 +1,6 @@
 from flask import Flask
 import config
-from exts import db,mail
+from exts import db,mail,alidayu
 from apps.cms import bp as cms_bp
 from apps.common import bp as common_bp
 from apps.front import bp as front_bp
@@ -13,6 +13,7 @@ def creat_app():
 
     db.init_app(app)
     mail.init_app(app)
+    alidayu.init_app(app)
 
     app.register_blueprint(cms_bp)
     app.register_blueprint(common_bp)

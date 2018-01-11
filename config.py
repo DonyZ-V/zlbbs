@@ -10,14 +10,12 @@ DB_USER = 'root'
 DB_PASSWORD = 'root'
 DB_DATABASE = 'zlbbs'
 
-DB_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8'.format(DB_USER,DB_PASSWORD,DB_HOST,DB_PORT,DB_DATABASE)
+DB_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8'.format(DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_DATABASE)
 
 SQLALCHEMY_DATABASE_URI = DB_URI
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-
 CMS_USER_ID = 'QWERASDF'
-
 
 # MAIL_USE_TLS：端口号587
 # MAIL_USE_SSL：端口号465
@@ -33,3 +31,9 @@ MAIL_USERNAME = ""
 MAIL_PASSWORD = ""
 # 默认和mail_username一样
 MAIL_DEFAULT_SENDER = ""
+
+# 阿里大于相关配置
+ALIDAYU_APP_KEY = '23709557'
+ALIDAYU_APP_SECRET = ''
+ALIDAYU_SIGN_NAME = '小饭桌应用'
+ALIDAYU_TEMPLATE_CODE = 'SMS_68465012'
