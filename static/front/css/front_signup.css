@@ -39,3 +39,7 @@ body {
     height: 32px;
     cursor: pointer;
 }
+
+#sms-captcha-btn{
+    width: 96px;
+}

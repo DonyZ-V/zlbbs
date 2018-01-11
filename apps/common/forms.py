@@ -18,7 +18,11 @@ class SMSCaptchaForm(BaseForm):
         timestamp = self.timestamp.data
         sign = self.sign.data
 
-        sign2 = hashlib.md5((timestamp+telephone+self.salt).encode('utf-8'))
+        sign2 = hashlib.md5((timestamp+telephone+self.salt).encode('utf-8')).hexdigest()
+
+        # print('客户端提交的sign：',sign)
+        # print('服务器生成的sign：',sign2)
+
         if sign == sign2:
             return True
         else:
