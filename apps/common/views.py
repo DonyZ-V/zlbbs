@@ -17,7 +17,7 @@ def sms_captcha():
             zlcache.set(telephone,captcha)
             return restful.success()
         else:
-            return restful.params_error()
+            return restful.params_error(message='发送失败！')
     else:
         return restful.params_error('参数错误！')
 
