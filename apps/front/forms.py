@@ -4,7 +4,7 @@ from wtforms.validators import Regexp, EqualTo, ValidationError
 from utils import zlcache
 
 
-class SignupFrom(BaseForm):
+class SignupForm(BaseForm):
     telephone = StringField(validators=[Regexp(r'1[345789]\d{9}', message='请输入正确格式的手机号码！')])
     sms_captcha = StringField(validators=[Regexp(r'\w{4}', message='请输入正确格式的短信验证码！')])
     username = StringField(validators=[Regexp(r'.{2,20}', message='请输入正确格式的用户名！')])
@@ -28,3 +28,12 @@ class SignupFrom(BaseForm):
             graph_captcha_mem = zlcache.get(graph_captcha.lower())
             if not graph_captcha_mem:
                 raise ValidationError(message='图形验证码错误！')
+
+
+class SigninForm(BaseForm):
+    telephone = StringField(validators=[Regexp(r'1[345789]\d{9}', message='请输入正确格式的手机号码！')])
+    password = StringField(validators=[Regexp(r'[0-9a-zA-Z_\.]{6,20}', message='请输入正确格式的密码！')])
+    remember = StringField()
+
+
+
