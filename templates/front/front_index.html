@@ -1,13 +1,51 @@
 {% extends 'front/front_base.html' %}
+{% from 'common/_macros.html' import static %}
 
 {% block title -%}
-知了课堂Python论坛
+    知了课堂Python论坛
 {%- endblock %}
 
 {% block head %}
-
+    <link rel="stylesheet" href="{{ static('front/css/front_index.css') }}">
 {% endblock %}
 
 {% block body %}
-我是首页
+    <div class="lg-container">
+        <div id="carousel-example-generic" class="index-bunner carousel slide" data-ride="carousel">
+            <!-- 指示器 -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+
+            <!-- 轮播图 -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <a href="#"><img src="http://static-image.xfz.cn/1515579583_617.png"></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="http://static-image.xfz.cn/1513304666_780.jpg"></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="http://static-image.xfz.cn/1512989310_955.jpg"></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="http://static-image.xfz.cn/1513304666_780.jpg"></a>
+                </div>
+            </div>
+
+            <!-- 左右按钮 -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="sm-container"></div>
 {% endblock %}

@@ -1,14 +1,17 @@
+{% from 'common/_macros.html' import static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title -%}{%- endblock %}</title>
+    <link rel="stylesheet" href="{{ static('front/css/front_base.css') }}">
     {% include 'common/_heads.html' %}
-    {% block head %}{% endblock %}
+    {% block head -%}
+    {%- endblock %}
 </head>
 <body>
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="container-fluid main-container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -37,6 +40,8 @@
         </div>
     </div>
 </nav>
-{% block body %}{% endblock %}
+<div class="main-container">
+    {% block body -%}{%- endblock %}
+</div>
 </body>
 </html>

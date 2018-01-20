@@ -1,14 +1,14 @@
 from flask import Blueprint, views, render_template, request, session, redirect, url_for, g, jsonify
-from exts import db,mail
-from .forms import LoginForm, ResetpwdForm,ResetEmailForm
-from .models import CMSUser,CMSPermission
-from .decorators import login_required,permission_required
+from exts import db, mail
+from .forms import LoginForm, ResetpwdForm, ResetEmailForm, AddBannerForm, UpdateBannerForm
+from .models import CMSUser, CMSPermission
+from ..models import BannerModel
+from .decorators import login_required, permission_required
 import config
-from utils import restful,zlcache
+from utils import restful, zlcache
 import string
 import random
 from flask_mail import Message
-
 
 bp = Blueprint('cms', __name__, url_prefix='/cms')
 
@@ -31,6 +31,7 @@ def logout():
 def profile():
     return render_template('cms/cms_profile.html')
 
+
 @bp.route('/email_captcha/')
 @login_required
 def email_captcha():
@@ -39,16 +40,16 @@ def email_captcha():
         return restful.params_error('请传递正确的邮箱!')
 
     source = list(string.ascii_letters)
-    source.extend(map(lambda x:str(x),range(0,9)))
+    source.extend(map(lambda x: str(x), range(0, 9)))
     # source.extend(['0','1','2','3','4','5','6','7','8','9'])
-    captcha = ''.join(random.sample(source,6))
+    captcha = ''.join(random.sample(source, 6))
 
-    message = Message('Python论坛邮箱验证码',recipients=[email],body='您的验证码是: %s' % captcha)
+    message = Message('Python论坛邮箱验证码', recipients=[email], body='您的验证码是: %s' % captcha)
     try:
         mail.send(message)
     except:
         return restful.server_error()
-    zlcache.set(email,captcha)
+    zlcache.set(email, captcha)
     return restful.success()
 
 
@@ -58,11 +59,13 @@ def email_captcha():
 def posts():
     return render_template('cms/cms_posts.html')
 
+
 @bp.route('/comments/')
 @login_required
 @permission_required(CMSPermission.COMMENTER)
 def comments():
     return render_template('cms/comments.html')
+
 
 @bp.route('/boards/')
 @login_required
@@ -70,11 +73,13 @@ def comments():
 def boards():
     return render_template('cms/cms_boards.html')
 
+
 @bp.route('/fusers/')
 @login_required
 @permission_required(CMSPermission.FRONTUSER)
 def fusers():
     return render_template('cms/cms_fusers.html')
+
 
 @bp.route('/cusers/')
 @login_required
@@ -82,11 +87,76 @@ def fusers():
 def cusers():
     return render_template('cms/cms_cusers.html')
 
+
 @bp.route('/croles/')
 @login_required
 @permission_required(CMSPermission.ALL_PERMISSION)
 def croles():
     return render_template('cms/cms_croles.html')
+
+
+@bp.route('/banners/')
+@login_required
+def banners():
+    banners = BannerModel.query.all()
+    return render_template('cms/cms_banners.html', banners=banners)
+
+
+@bp.route('/abanner/', methods=['POST'])
+@login_required
+def abanner():
+    form = AddBannerForm(request.form)
+    if form.validate():
+        name = form.name.data
+        image_url = form.image_url.data
+        link_url = form.link_url.data
+        priority = form.priority.data
+        banner = BannerModel(name=name, image_url=image_url, link_url=link_url, priority=priority)
+        db.session.add(banner)
+        db.session.commit()
+        return restful.success()
+    else:
+        return restful.params_error(message='参数错误！')
+
+
+@bp.route('/ubanner/', methods=['POST'])
+@login_required
+def ubanner():
+    form = UpdateBannerForm(request.form)
+    if form.validate():
+        banner_id = form.banner_id.data
+        name = form.name.data
+        image_url = form.image_url.data
+        link_url = form.link_url.data
+        priority = form.priority.data
+        banner = BannerModel.query.get(banner_id)
+        if banner:
+            banner.name = name
+            banner.image_url = image_url
+            banner.link_url = link_url
+            banner.priority = priority
+            db.session.commit()
+            return restful.success()
+        else:
+            return restful.params_error(message='没有这个轮播图！')
+    else:
+        return restful.params_error(message=form.get_error())
+
+
+@bp.route('/dbanner/',methods=['POST'])
+@login_required
+def dbanner():
+    banner_id = request.form.get('banner_id')
+    if not banner_id:
+        return restful.params_error(message='请传入轮播图id!')
+
+    banner = BannerModel.query.get(banner_id)
+    if not banner:
+        return restful.params_error(message='没有这个轮播图！')
+
+    db.session.delete(banner)
+    db.session.commit()
+    return restful.success()
 
 
 class LoginView(views.MethodView):
@@ -159,4 +229,4 @@ class ResetEmailView(views.MethodView):
 
 bp.add_url_rule('/login/', view_func=LoginView.as_view('login'))
 bp.add_url_rule('/resetpwd/', view_func=ResetPwdView.as_view('resetpwd'))
-bp.add_url_rule('/resetemail/',view_func=ResetEmailView.as_view('resetemail'))
+bp.add_url_rule('/resetemail/', view_func=ResetEmailView.as_view('resetemail'))

@@ -34,3 +34,13 @@ class ResetEmailForm(BaseForm):
         user = g.cms_user
         if user.email == email:
             raise ValidationError('不能使用重复的邮箱进行修改！')
+
+class AddBannerForm(BaseForm):
+    name = StringField(validators=[InputRequired(message='请输入轮播图名称！')])
+    image_url = StringField(validators=[InputRequired(message='请输入轮播图地址！')])
+    link_url = StringField(validators=[InputRequired(message='请输入轮播图跳转链接！')])
+    priority = StringField(validators=[InputRequired(message='请输入轮播图权重！')])
+
+
+class UpdateBannerForm(AddBannerForm):
+    banner_id = IntegerField(validators=[InputRequired(message='请输入图片id！')])
