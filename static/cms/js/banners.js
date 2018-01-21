@@ -76,7 +76,7 @@ $(function () {
         linkInput.val(link_url);
         priorityInput.val(priority);
 
-        saveBtn.attr('data-type', 'update')
+        saveBtn.attr('data-type', 'update');
         saveBtn.attr('data-id', tr.attr('data-id'))
     })
 });
@@ -108,4 +108,16 @@ $(function () {
             }
         })
     })
-})
+});
+
+$(function () {
+    zlqiniu.setUp({
+        'domain': 'http://7xqenu.com1.z0.glb.clouddn.com/',
+        'browse_btn': 'upload-btn',
+        'uptoken_url': '/c/uptoken/',
+        'success': function (up,file,info) {
+            var imageInput = $("input[name='image_url']");
+            imageInput.val(file.name);
+        }
+    });
+});

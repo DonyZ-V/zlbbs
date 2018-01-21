@@ -11,29 +11,26 @@
 
 {% block body %}
     <div class="lg-container">
-        <div id="carousel-example-generic" class="index-bunner carousel slide" data-ride="carousel">
-            <!-- 指示器 -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-            </ol>
+    <div id="carousel-example-generic" class="index-bunner carousel slide" data-ride="carousel">
+        <!-- 指示器 -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        </ol>
 
-            <!-- 轮播图 -->
+        <!-- 轮播图 -->
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <a href="#"><img src="http://static-image.xfz.cn/1515579583_617.png"></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="http://static-image.xfz.cn/1513304666_780.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="http://static-image.xfz.cn/1512989310_955.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="http://static-image.xfz.cn/1513304666_780.jpg"></a>
-                </div>
+                {% for banner in banners %}
+                    {% if loop.first %}
+                        <div class="item active">
+                    {% else %}
+                        <div class="item">
+                    {% endif %}
+                        <a href="{{ banner.link_url }}"><img src="{{ banner.image_url }}"></a>
+                    </div>
+                {% endfor %}
             </div>
 
             <!-- 左右按钮 -->
