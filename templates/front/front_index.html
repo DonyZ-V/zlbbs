@@ -21,16 +21,16 @@
         </ol>
 
         <!-- 轮播图 -->
-            <div class="carousel-inner" role="listbox">
-                {% for banner in banners %}
-                    {% if loop.first %}
-                        <div class="item active">
-                    {% else %}
-                        <div class="item">
-                    {% endif %}
-                        <a href="{{ banner.link_url }}"><img src="{{ banner.image_url }}"></a>
-                    </div>
-                {% endfor %}
+        <div class="carousel-inner" role="listbox">
+            {% for banner in banners %}
+                {% if loop.first %}
+                    <div class="item active">
+                {% else %}
+                    <div class="item">
+                {% endif %}
+            <a href="{{ banner.link_url }}"><img src="{{ banner.image_url }}"></a>
+            </div>
+            {% endfor %}
             </div>
 
             <!-- 左右按钮 -->
@@ -44,5 +44,15 @@
             </a>
         </div>
     </div>
-    <div class="sm-container"></div>
+    <div class="sm-container">
+        <div style="padding-bottom: 10px">
+            <button class="btn btn-warning btn-block">发布帖子</button>
+        </div>
+        <div class="list-group">
+            <a href="#" class="list-group-item active">所有板块</a>
+            {% for board in boards %}
+                <a href="#" class="list-group-item">{{ board.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

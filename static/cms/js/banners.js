@@ -112,7 +112,7 @@ $(function () {
 
 $(function () {
     zlqiniu.setUp({
-        'domain': 'http://7xqenu.com1.z0.glb.clouddn.com/',
+        'domain': 'http://p2y28k0p4.bkt.clouddn.com/',
         'browse_btn': 'upload-btn',
         'uptoken_url': '/c/uptoken/',
         'success': function (up,file,info) {
