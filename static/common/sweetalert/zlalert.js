@@ -37,8 +37,8 @@ var zlalert = {
         args = {
             'title': '提示',
             'text': msg,
-            'type': 'success',
-        }
+            'type': 'success'
+        };
         swal(args,confirmCallback);
     }, 
     /*

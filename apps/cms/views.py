@@ -1,8 +1,9 @@
 from flask import Blueprint, views, render_template, request, session, redirect, url_for, g, jsonify
 from exts import db, mail
-from .forms import LoginForm, ResetpwdForm, ResetEmailForm, AddBannerForm, UpdateBannerForm
+from .forms import LoginForm, ResetpwdForm, ResetEmailForm, AddBannerForm, UpdateBannerForm, AddBoardForm, \
+    UpdateBoardForm
 from .models import CMSUser, CMSPermission
-from ..models import BannerModel
+from ..models import BannerModel, BoardModel
 from .decorators import login_required, permission_required
 import config
 from utils import restful, zlcache
@@ -71,7 +72,61 @@ def comments():
 @login_required
 @permission_required(CMSPermission.BOARDER)
 def boards():
-    return render_template('cms/cms_boards.html')
+    board_models = BoardModel.query.all()
+    content = {
+        'boards': board_models
+    }
+    return render_template('cms/cms_boards.html',**content)
+
+
+@bp.route('/aboard/', methods=['POST'])
+@login_required
+@permission_required(CMSPermission.BOARDER)
+def aboard():
+    form = AddBoardForm(request.form)
+    if form.validate():
+        name = form.name.data
+        board = BoardModel(name=name)
+        db.session.add(board)
+        db.session.commit()
+        return restful.success()
+    else:
+        return restful.params_error(message=form.get_error())
+
+
+@bp.route('/uboard/', methods=['POST'])
+@login_required
+@permission_required(CMSPermission.BOARDER)
+def uboard():
+    form = UpdateBoardForm(request.form)
+    if form.validate():
+        board_id = form.board_id.data
+        name = form.name.data
+        board = BoardModel.query.get(board_id)
+        if board:
+            board.name = name
+            db.session.commit()
+            return restful.success()
+        else:
+            return restful.params_error(message='没有这个板块！')
+    else:
+        return restful.params_error(message=form.get_error())
+
+
+@bp.route('/dboard/', methods=['POST'])
+@login_required
+@permission_required(CMSPermission.BOARDER)
+def dboard():
+    board_id = request.form.get('board_id')
+    if not board_id:
+        return restful.params_error(message='请传入板块id！')
+    board = BoardModel.query.get(board_id)
+    if not board:
+        return restful.params_error(message='没有这个板块')
+
+    db.session.delete(board)
+    db.session.commit()
+    return restful.success()
 
 
 @bp.route('/fusers/')
@@ -143,7 +198,7 @@ def ubanner():
         return restful.params_error(message=form.get_error())
 
 
-@bp.route('/dbanner/',methods=['POST'])
+@bp.route('/dbanner/', methods=['POST'])
 @login_required
 def dbanner():
     banner_id = request.form.get('banner_id')

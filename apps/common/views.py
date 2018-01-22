@@ -38,10 +38,10 @@ def graph_captcha():
 
 @bp.route('/uptoken/')
 def uptoken():
-    access_key = 'M4zCEW4f9XPanbMN-Lb9O0S8j893f0e1ezAohFVL'
-    secret_key = '7BKV7HeEKM3NDJk8_l_C89JI3SMmeUlAIatzl9d4'
+    access_key = 'Ph0xk5XcAAfvlZyRSlp-o9TgweYEFwP1pf81LfbU'
+    secret_key = 'hBVxy1LWYoiN3K-FLO166nrUboSArouadoBwHjHs'
     q = qiniu.Auth(access_key, secret_key)
 
-    bucket = 'hyvideo'
+    bucket = 'dzbbs'
     token = q.upload_token(bucket)
     return jsonify({'uptoken': token})
