@@ -4,6 +4,7 @@ from exts import db,mail,alidayu
 from apps.cms import bp as cms_bp
 from apps.common import bp as common_bp
 from apps.front import bp as front_bp
+from apps.ueditor import bp as ueditor_bp
 from flask_wtf import CSRFProtect
 
 
@@ -18,6 +19,7 @@ def creat_app():
     app.register_blueprint(cms_bp)
     app.register_blueprint(common_bp)
     app.register_blueprint(front_bp)
+    app.register_blueprint(ueditor_bp)
 
     CSRFProtect(app)
 
