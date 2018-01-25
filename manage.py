@@ -4,7 +4,7 @@ from exts import db
 from zlbbs import creat_app
 from apps.cms import models as cms_models
 from apps.front import models as front_models
-from apps.models import BannerModel
+from apps.models import BannerModel,BoardModel,PostModel
 
 CMSUser = cms_models.CMSUser
 CMSRole = cms_models.CMSRole
@@ -79,13 +79,28 @@ def add_user_to_role(email, name):
         print('%s没有这个用户' % email)
 
 
-@manager.option('-t','--telephone',dest='telephone')
-@manager.option('-u','--username',dest='username')
-@manager.option('-p','--password',dest='password')
-def create_front_user(telephone,username,password):
-    user = FrontUser(telephone=telephone,username=username,password=password)
+@manager.option('-t', '--telephone', dest='telephone')
+@manager.option('-u', '--username', dest='username')
+@manager.option('-p', '--password', dest='password')
+def create_front_user(telephone, username, password):
+    user = FrontUser(telephone=telephone, username=username, password=password)
     db.session.add(user)
     db.session.commit()
+
+
+@manager.command
+def create_test_post():
+    for x in range(1, 205):
+        title = '标题%s' % x
+        content = '内容%s' % x
+        board = BoardModel.query.first()
+        author = FrontUser.query.first()
+        post = PostModel(title=title,content=content)
+        post.board = board
+        post.author = author
+        db.session.add(post)
+        db.session.commit()
+    print('恭喜测试帖子添加成功!')
 
 
 if __name__ == '__main__':

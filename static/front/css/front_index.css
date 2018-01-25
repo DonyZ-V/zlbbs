@@ -38,6 +38,11 @@
     margin-top: 20px;
 }
 
+.post-list-group li {
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
 .author-avatar-group {
     float: left;
 }

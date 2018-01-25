@@ -1,4 +1,4 @@
-from flask import Blueprint, views, render_template, redirect, url_for, request, session,g
+from flask import Blueprint, views, render_template, redirect, url_for, request, session, g, abort
 from .forms import SignupForm, SigninForm, AddPostForm
 from utils import restful, safeutils
 from .models import FrontUser
@@ -6,21 +6,44 @@ from exts import db
 import config
 from ..models import BannerModel, BoardModel, PostModel
 from .decorators import login_required
+from flask_paginate import Pagination, get_page_parameter
 
 bp = Blueprint('front', __name__)
 
 
 @bp.route('/')
 def index():
+    board_id = request.args.get('bd', type=int, default=None)
+    page = request.args.get(get_page_parameter(), type=int, default=1)
     banners = BannerModel.query.order_by(BannerModel.priority.desc()).limit(4)
     boards = BoardModel.query.all()
-    posts = PostModel.query.all()
+    start = (page - 1) * config.PER_PAGE
+    end = start + config.PER_PAGE
+    posts = None
+    total = 0
+    if board_id:
+        query_obj = PostModel.query.filter_by(board_id=board_id)
+        posts = query_obj.slice(start, end)
+        total = query_obj.count()
+    else:
+        posts = PostModel.query.slice(start, end)
+    pagination = Pagination(bs_version=3, page=page, total=total, outer_window=0, inner_window=2)
     content = {
         'banners': banners,
         'boards': boards,
-        'posts': posts
+        'posts': posts,
+        'pagination': pagination,
+        'current_board': board_id
     }
     return render_template('front/front_index.html', **content)
+
+
+@bp.route('/p/<post_id>/')
+def post_detail(post_id):
+    post = PostModel.query.get(post_id)
+    if not post:
+        abort(404)
+    return render_template('front/front_pdetail.html',post=post)
 
 
 @bp.route('/apost/', methods=['GET', 'POST'])
@@ -28,7 +51,7 @@ def index():
 def apost():
     if request.method == 'GET':
         boards = BoardModel.query.all()
-        return render_template('front/front_apost.html',boards=boards)
+        return render_template('front/front_apost.html', boards=boards)
     else:
         form = AddPostForm(request.form)
         if form.validate():
